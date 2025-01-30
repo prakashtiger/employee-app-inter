@@ -1,4 +1,4 @@
-<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+<form [formGroup]="employeeForm" class="employee-form">
     <mat-form-field appearance="fill">
       <mat-icon matIconPrefix class="mat-icon-rtl-mirror">person</mat-icon>
       <input matInput formControlName="name" required  placeholder="Employee Name">
@@ -10,20 +10,35 @@
         <mat-option  *ngFor="let destignation of destignationList" [value]="destignation" >{{destignation}}</mat-option>        
       </mat-select>
     </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <input matInput [matDatepicker]="picker"  formControlName="joinedDate" required placeholder="DD MMM YYYY" (click)="picker.open()">
-      <!-- <mat-datepicker >
-        <mat-datepicker-actions>
-          <button mat-button matDatepickerCancel>Cancel</button>
-          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-        </mat-datepicker-actions>
-      </mat-datepicker> -->
-      <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <app-footer>
-      <button mat-raised-button  class="cancel-button" routerLink="/employee/list">Cancel</button>
-      <button mat-raised-button color="primary" type="submit">Save</button>
-    </app-footer>  
+    <div class="date-range">
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="startpicker" [max]="maxDate"  formControlName="startDate" required placeholder="DD MMM YYYY" (click)="startpicker.open()">
+      
+        <mat-datepicker-toggle matIconPrefix [for]="startpicker"></mat-datepicker-toggle> 
+        <mat-datepicker #startpicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+      <mat-icon class="date-range-icon">arrow_right_alt</mat-icon>
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="endpicker"  [max]="maxDate"  formControlName="endDate" required placeholder="DD MMM YYYY" (click)="endpicker.open()">
+      
+        
+        <mat-datepicker-toggle matIconPrefix [for]="endpicker"></mat-datepicker-toggle>
+        <mat-datepicker #endpicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+    </div>
+    
   </form>
+  <app-footer>
+    <button mat-raised-button  class="cancel-button" routerLink="/employee/list">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+  </app-footer>  

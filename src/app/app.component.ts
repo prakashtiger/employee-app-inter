@@ -9,7 +9,7 @@ import { EmployeeService } from './employee.service';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent],
   templateUrl: 'app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
    providers: [EmployeeService, AppDB]
 })
 export class AppComponent {

@@ -67,6 +67,7 @@ export class CreateEmployeeComponent {
   ];
   private employeeService = inject(EmployeeService);
   private route = inject(ActivatedRoute);
+  maxDate = moment().toDate();
   constructor(private fb: FormBuilder, private router: Router) {
     this.employeeService.title.set('Add Employee');
     this.formInit();
@@ -86,7 +87,8 @@ export class CreateEmployeeComponent {
     this.employeeForm = this.fb.group({
       name: [formData?.name || '', Validators.required],
       designation: [formData?.designation || '', Validators.required],
-      joinedDate: [formData?.joinedDate || '', Validators.required],
+      startDate: [formData?.startDate || '', Validators.required],
+      endDate: [formData?.endDate || ''],
       id: [formData?.id || null],
     });
   }
@@ -95,9 +97,12 @@ export class CreateEmployeeComponent {
     if (this.employeeForm.valid) {
       const formValue = {
         ...this.employeeForm.value,
-        joinedDate: moment.isDate(this.employeeForm.value.joinedDate)
-          ? this.employeeForm.value.joinedDate
-          : this.employeeForm.value.joinedDate.toDate(),
+        startDate: moment.isDate(this.employeeForm.value.startDate)
+          ? this.employeeForm.value.startDate
+          : this.employeeForm.value.startDate.toDate(),
+        endDate: moment.isDate(this.employeeForm.value.endDate)
+          ? this.employeeForm.value.endDate
+          : this.employeeForm.value.endDate.toDate(),
       };
       if (formValue.id) {
         this.employeeService.updateEmployee(formValue).then(() => {

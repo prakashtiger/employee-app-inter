@@ -1,6 +1,6 @@
 <div class="title-container">
   <header>Current Employees</header>
-  <div class="button-container">
+  <!-- <div class="button-container">
     <button
       mat-icon-button
       color="primary"
@@ -10,7 +10,7 @@
     >
       <img src="assets/plus-footer.svg" alt="add" />
     </button>
-  </div>
+  </div> -->
 </div>
 <ng-container *ngIf="employeeListCount$ | async; else noDataFound">
   <main>
@@ -48,14 +48,14 @@
   </main>
 </ng-container>
 <app-footer class="list-footer">
-  <button
-    mat-icon-button
+  <a
+    mat-button
     color="primary"
     aria-label="add icon"
     routerLink="/employee/add"
   >
-    <img src="assets/plus-footer.svg" alt="add" />
-  </button>
+  <mat-icon  class="add-icon">add_box</mat-icon>
+</a>
 </app-footer>
 
 <ng-template #noDataFound>

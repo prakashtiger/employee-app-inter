@@ -5,7 +5,8 @@ export interface Employee {
   id?: number;
   name: string;
   designation: string;
-  joinedDate?: Date | string;
+  startDate?: Date | string;
+  endDate?: Date | string;
 }
 
 @Injectable({

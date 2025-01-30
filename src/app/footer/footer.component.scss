@@ -1,13 +1,10 @@
 :host {
   display: flex;
-  padding: 16px;  
+  padding: 16px 10px;  
   justify-content: flex-end;
-  &.list-footer{
-    background-color: #f2f2f2;
-    @media screen and (width > 500px) {
-      display: none;        
-    }
-  }
+  position: sticky;
+  bottom: 0;
+  background-color: #f2f2f2; 
   footer {
     color: #ffffff;
     font-weight: 500;

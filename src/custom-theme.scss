@@ -34,11 +34,7 @@ $theme-theme: mat.define-light-theme(
 // // that you are using.
 @include mat.all-component-themes($theme-theme);
 
-.mat-mdc-icon-button svg,
-.mat-mdc-icon-button img {
-  width: auto !important;
-  height: auto !important;
-}
+
 
 .mat-mdc-form-field-focus-overlay {
   background-color: transparent !important;
