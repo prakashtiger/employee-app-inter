@@ -1,0 +1,65 @@
+@mixin fontinfo($fontSize, $fontWeight, $color) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  color: $color;
+}
+:host {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 93.5vh;
+  .employee-name {
+    @include fontinfo(16px, 500, #323238);
+    padding-bottom: 10px;
+  }
+  .title-container {
+    display: flex;
+    justify-content: space-between;    
+    background-color: #f2f2f2;
+    padding: 16px;
+    header {
+        @include fontinfo(16px, 500, #1DA1F2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .button-container {
+      display: none;
+    }
+    @media (width > 500px) {
+      .button-container {
+        display: flex;
+        
+        justify-content: flex-end;
+        .add-employee {
+          display: flex;
+          border: none;
+          padding: 0;
+        }
+      }
+    }
+  }
+  mat-card-content {
+    display: flex;
+    justify-content: space-between;
+    .designation {
+      @include fontinfo(14px, 400, #949c9e);
+      line-height: 20px;
+      padding-bottom: 10px;
+    }
+    .joining-date {
+      @include fontinfo(12px, 400, #949c9e);
+      line-height: 20px;
+      padding-bottom: 10px;
+    }
+  }
+  .no-data-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    .details-info {
+      @include fontinfo(18px, 18px, #323238);
+    }
+  }
+}

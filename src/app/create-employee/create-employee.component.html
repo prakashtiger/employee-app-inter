@@ -1,0 +1,29 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+    <mat-form-field appearance="fill">
+      <mat-icon matIconPrefix class="mat-icon-rtl-mirror">person</mat-icon>
+      <input matInput formControlName="name" required  placeholder="Employee Name">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-icon matIconPrefix class="mat-icon-rtl-mirror">work</mat-icon>
+      <mat-select formControlName="designation" required placeholder="Select Role">
+        <mat-option  *ngFor="let destignation of destignationList" [value]="destignation" >{{destignation}}</mat-option>        
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <input matInput [matDatepicker]="picker"  formControlName="joinedDate" required placeholder="DD MMM YYYY" (click)="picker.open()">
+      <!-- <mat-datepicker >
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker> -->
+      <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <app-footer>
+      <button mat-raised-button  class="cancel-button" routerLink="/employee/list">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </app-footer>  
+  </form>

@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  padding: 16px;  
+  justify-content: flex-end;
+  &.list-footer{
+    background-color: #f2f2f2;
+    @media screen and (width > 500px) {
+      display: none;        
+    }
+  }
+  footer {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    justify-self: flex-end;
+    column-gap: 8px;
+  }
+}

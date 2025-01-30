@@ -1,0 +1,65 @@
+<div class="title-container">
+  <header>Current Employees</header>
+  <div class="button-container">
+    <button
+      mat-icon-button
+      color="primary"
+      aria-label="add icon"
+      class="add-employee"
+      routerLink="/employee/add"
+    >
+      <img src="assets/plus-footer.svg" alt="add" />
+    </button>
+  </div>
+</div>
+<ng-container *ngIf="employeeListCount$ | async; else noDataFound">
+  <main>
+    <mat-card *ngFor="let employee of employeeLists$ | async">
+      <mat-card-header>
+        <mat-card-title class="employee-name">{{
+          employee.name | titlecase
+        }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="info-container">
+          <p class="designation">{{ employee.designation }}</p>
+          <p class="joining-date">{{ employee.joinedDate | momentDate }}</p>
+        </div>
+        <div class="button-container">
+          <button
+            mat-icon-button
+            color="primary"
+            aria-label="edit icon"
+            routerLink="/employee/edit/{{ employee.id }}"
+          >
+           <mat-icon  class="mat-icon-rtl-mirror">edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="delete icon"
+            (click)="deleteEmployee(employee.id)"
+          >
+          <mat-icon  class="mat-icon-rtl-mirror">delete</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </main>
+</ng-container>
+<app-footer class="list-footer">
+  <button
+    mat-icon-button
+    color="primary"
+    aria-label="add icon"
+    routerLink="/employee/add"
+  >
+    <img src="assets/plus-footer.svg" alt="add" />
+  </button>
+</app-footer>
+
+<ng-template #noDataFound>
+  <div class="no-data-found">
+    <img src="/assets/nodata.svg" alt="No Data Found" />
+  </div>
+</ng-template>
