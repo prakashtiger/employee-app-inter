@@ -49,9 +49,9 @@ $theme-theme: mat.define-light-theme(
   border-radius: 4px !important;
 }
 
-.mat-mdc-icon-button svg,
-.mat-icon {
-  color: #1da1f2;
+
+.mat-datepicker-toggle, .mat-mdc-form-field-icon-prefix .mat-icon, .date-range-icon{
+  color: #1da1f2 !important;
 }
 .cancel-button{
     .mdc-button__ripple {
@@ -69,3 +69,21 @@ $theme-theme: mat.define-light-theme(
     border-bottom: #EDF8FF 1px solid!important;
 }
 
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 14px; /* Reduce base font size */
+  }
+
+  .start-date, .end-date{
+    width: 170px;
+    * {
+      font-size: 14px !important;
+      font-weight: 400 !important;
+    }
+  }
+
+  footer  {
+    font-size: 0.875rem; /* Reduce font size */
+  }
+}

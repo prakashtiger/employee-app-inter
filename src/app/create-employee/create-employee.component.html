@@ -10,8 +10,9 @@
         <mat-option  *ngFor="let destignation of destignationList" [value]="destignation" >{{destignation}}</mat-option>        
       </mat-select>
     </mat-form-field>
+    <!--Date picker need to customize adapt with design-->
     <div class="date-range">
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="start-date" subscriptSizing="dynamic">
         <input matInput [matDatepicker]="startpicker" [max]="maxDate"  formControlName="startDate" required placeholder="DD MMM YYYY" (click)="startpicker.open()">
       
         <mat-datepicker-toggle matIconPrefix [for]="startpicker"></mat-datepicker-toggle> 
@@ -23,8 +24,8 @@
         </mat-datepicker>
       </mat-form-field>
       <mat-icon class="date-range-icon">arrow_right_alt</mat-icon>
-      <mat-form-field appearance="fill">
-        <input matInput [matDatepicker]="endpicker"  [max]="maxDate"  formControlName="endDate" required placeholder="DD MMM YYYY" (click)="endpicker.open()">
+      <mat-form-field appearance="fill" class="end-date"  subscriptSizing="dynamic">
+        <input matInput [matDatepicker]="endpicker"  [max]="maxDate"  formControlName="endDate" placeholder="DD MMM YYYY" (click)="endpicker.open()">
       
         
         <mat-datepicker-toggle matIconPrefix [for]="endpicker"></mat-datepicker-toggle>

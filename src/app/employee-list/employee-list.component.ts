@@ -17,8 +17,11 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [CommonModule, MatCardModule, MomentDatePipe, MatButtonModule, RouterModule, FooterComponent, MatIconModule]
 })
 export class EmployeeListComponent {
-    employeeLists$ = liveQuery(() => this.employeeService.getEmployees())
+    currentEmployeeLists$ = liveQuery(() => this.employeeService.getCurrentEmployees())
+    previousEmployeeLists$ = liveQuery(() => this.employeeService.getPreviousEmployees())
     employeeListCount$ = liveQuery(() => this.employeeService.getEmployeeCount())
+    currentEmployeeListCount$ = liveQuery(() => this.employeeService.getCurrentEmployeeCount())
+    previousEmployeeListCount$ = liveQuery(() => this.employeeService.getPreviousEmployeeCount())
     constructor(private employeeService: EmployeeService) {
       this.employeeService.title.set('Employee List');
     }

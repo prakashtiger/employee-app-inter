@@ -63,7 +63,7 @@ export class CreateEmployeeComponent {
     'Product Designer',
     'Flutter Developer',
     'QA Tester',
-    'QA Tester',
+    'Product Owner',
   ];
   private employeeService = inject(EmployeeService);
   private route = inject(ActivatedRoute);
@@ -91,6 +91,15 @@ export class CreateEmployeeComponent {
       endDate: [formData?.endDate || ''],
       id: [formData?.id || null],
     });
+    this.employeeForm.get('startDate')?.valueChanges.subscribe((value) => {
+      console.log(value);
+      if (moment(value).format('YYYY-MM-DD') === moment().format('YYYY-MM-DD')) {
+        this.employeeForm.get('endDate')?.reset();
+        this.employeeForm.get('endDate')?.disable();
+      } else {
+        this.employeeForm.get('endDate')?.enable();
+      }
+    });
   }
 
   onSubmit() {
@@ -102,7 +111,7 @@ export class CreateEmployeeComponent {
           : this.employeeForm.value.startDate.toDate(),
         endDate: moment.isDate(this.employeeForm.value.endDate)
           ? this.employeeForm.value.endDate
-          : this.employeeForm.value.endDate.toDate(),
+          : this.employeeForm.value.endDate ? this.employeeForm.value.endDate.toDate() : moment().toDate(),
       };
       if (formValue.id) {
         this.employeeService.updateEmployee(formValue).then(() => {

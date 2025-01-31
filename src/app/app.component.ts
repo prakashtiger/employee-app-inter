@@ -17,7 +17,6 @@ export class AppComponent {
   private empService = inject(EmployeeService);
   constructor() {    
     effect(() => {
-      console.log('title changed');
       this.title = this.empService.title();
     });
   }

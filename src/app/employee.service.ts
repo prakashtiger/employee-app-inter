@@ -1,9 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import AppDB, { Employee } from './app.db';
-
+import * as moment from 'moment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeService {
   title = signal('Employee List');
@@ -12,15 +12,48 @@ export class EmployeeService {
   addEmployee(employee: Employee) {
     return this.appDB.employeeLists.add(employee);
   }
-  getEmployees() {
-    return this.appDB.employeeLists.toArray();
+
+  getCurrentEmployees() {
+    return this.appDB.employeeLists
+      .filter(
+        (employee) =>
+          employee.endDate === '' || moment(employee.endDate).isSameOrAfter(moment().subtract(1, 'day'))
+      )
+      .toArray();
+  }
+
+  getPreviousEmployees() {
+    return this.appDB.employeeLists
+      .filter(
+        (employee) =>
+          employee.endDate !== '' && moment(employee.endDate).isSameOrBefore(moment().subtract(1, 'day'))
+      )
+      .toArray();
   }
 
   getEmployeeCount() {
     return this.appDB.employeeLists.count();
   }
 
-  getEmployee(id: number) {    
+  getPreviousEmployeeCount() {
+    return this.appDB.employeeLists
+      .filter(
+        (employee) =>
+          employee.endDate !== '' && moment(employee.endDate).isSameOrBefore(moment().subtract(1, 'day'))
+      )
+      .count();
+  }
+
+  getCurrentEmployeeCount() {
+    return this.appDB.employeeLists
+      .filter(
+        (employee) =>
+          employee.endDate === '' || moment(employee.endDate).isSameOrAfter(moment().subtract(1, 'day'))
+      )
+      .count();
+  }
+
+  getEmployee(id: number) {
     return this.appDB.employeeLists.get(id);
   }
   updateEmployee(employee: Employee) {
@@ -30,4 +63,3 @@ export class EmployeeService {
     return this.appDB.employeeLists.delete(id);
   }
 }
- 
